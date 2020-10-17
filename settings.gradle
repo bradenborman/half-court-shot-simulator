@@ -1,0 +1,2 @@
+rootProject.name = 'half-court-shot-simulator'
+include 'hcs-server', 'hcs-client'
