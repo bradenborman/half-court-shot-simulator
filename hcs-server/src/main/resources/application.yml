@@ -1,4 +1,10 @@
 spring:
+  application:
+    name: half-court-simulator
   output:
     ansi:
       enabled: ALWAYS
+
+logging:
+  level:
+    root: INFO
