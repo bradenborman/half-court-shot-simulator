@@ -45,16 +45,21 @@ const config = {
       filename: "./index.html"
     }),
     new CopyWebpackPlugin([
-      { from: "src/img", to: "img" }
-      // { from: "src/img/shield-logo.png", to: "img/favicon.png" },
-      // { from: "src/lib/fonts", to: "fonts" },
-      // { from: "src/lib/webfonts", to: "webfonts" },
-      // {
-      //   from: "src/lib/font-awesome-v5.12.1.css",
-      //   to: "lib/font-awesome-v5.12.1.css"
-      // }
+      { from: "src/img", to: "img" },
+      { from: "src/lib/fonts", to: "fonts" },
+      { from: "src/lib/webfonts", to: "webfonts" },
+      {
+        from: "src/lib/font-awesome-v5.10.2.min.css",
+        to: "lib/font-awesome-v5.10.2.min.css"
+      }
     ])
   ]
+};
+
+config.node = {
+  fs: "empty",
+  net: "empty",
+  tls: "empty"
 };
 
 if (isProd) {
@@ -65,8 +70,8 @@ if (isProd) {
 
   config.plugins.push(
     new MiniCssExtractPlugin({
-      filename: "index.css",
-      chunkFilename: "[id].css"
+      filename: "index.[hash].css",
+      chunkFilename: "[id].[hash].css"
     })
   );
 } else {

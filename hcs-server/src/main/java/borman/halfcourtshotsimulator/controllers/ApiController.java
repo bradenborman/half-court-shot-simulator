@@ -1,12 +1,11 @@
 package borman.halfcourtshotsimulator.controllers;
 
+import borman.halfcourtshotsimulator.models.requests.SimulationRequest;
 import borman.halfcourtshotsimulator.services.SimulationService;
 import borman.halfcourtshotsimulator.models.ShotLocation;
 import borman.halfcourtshotsimulator.models.responses.SimulationResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -16,6 +15,12 @@ public class ApiController {
 
     public ApiController(SimulationService simulationService) {
         this.simulationService = simulationService;
+    }
+
+    //TODO make body take both requests at once
+    @PostMapping("/simulate")
+    public ResponseEntity<SimulationResponse> simulateSequence(@RequestBody SimulationRequest simulationRequest) {
+        return ResponseEntity.ok(simulationService.startSequenceFrom(simulationRequest.getStartingLocation()));
     }
 
     @GetMapping("/simulate/start:half-court")
