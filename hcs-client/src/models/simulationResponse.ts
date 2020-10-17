@@ -1,6 +1,5 @@
-import { AttemptBreakdown } from "./attemptBreakdown";
+import { SimulationResult } from "./simulationResult";
 
 export interface SimulationResponse {
-  startingLocation: string;
-  allAttempts: AttemptBreakdown[];
+  allResults: SimulationResult[];
 }

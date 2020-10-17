@@ -2,14 +2,13 @@ package borman.halfcourtshotsimulator.models.requests;
 
 public class SimulationRequest {
 
-    private String startingLocation;
+    private String[] startingLocations;
 
-    public String getStartingLocation() {
-        return startingLocation;
+    public String[] getStartingLocations() {
+        return startingLocations;
     }
 
-    public void setStartingLocation(String startingLocation) {
-        this.startingLocation = startingLocation;
+    public void setStartingLocations(String[] startingLocations) {
+        this.startingLocations = startingLocations;
     }
-
 }

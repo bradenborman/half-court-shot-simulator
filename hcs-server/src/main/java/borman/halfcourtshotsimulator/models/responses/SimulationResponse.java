@@ -1,28 +1,19 @@
 package borman.halfcourtshotsimulator.models.responses;
 
-import borman.halfcourtshotsimulator.models.AttemptBreakdown;
+import borman.halfcourtshotsimulator.models.SimulationResult;
 
 import java.util.List;
 
 public class SimulationResponse {
 
-    private String startingLocation;
-    private List<AttemptBreakdown> allAttempts;
+    private List<SimulationResult> allResults;
 
-    public String getStartingLocation() {
-        return startingLocation;
+    public List<SimulationResult> getAllResults() {
+        return allResults;
     }
 
-    public void setStartingLocation(String startingLocation) {
-        this.startingLocation = startingLocation;
-    }
-
-    public List<AttemptBreakdown> getAllAttempts() {
-        return allAttempts;
-    }
-
-    public void setAllAttempts(List<AttemptBreakdown> allAttempts) {
-        this.allAttempts = allAttempts;
+    public void setAllResults(List<SimulationResult> allResults) {
+        this.allResults = allResults;
     }
 
 }

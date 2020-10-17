@@ -1,6 +1,6 @@
 package borman.halfcourtshotsimulator.builders;
 
-import borman.halfcourtshotsimulator.models.AttemptBreakdown;
+import borman.halfcourtshotsimulator.models.SimulationResult;
 import borman.halfcourtshotsimulator.models.responses.SimulationResponse;
 
 import java.util.List;
@@ -17,13 +17,8 @@ public final class SimulationResponseBuilder {
         return new SimulationResponseBuilder();
     }
 
-    public SimulationResponseBuilder withAllAttempts(List<AttemptBreakdown> allAttempts) {
-        simulationResponse.setAllAttempts(allAttempts);
-        return this;
-    }
-
-    public SimulationResponseBuilder withStartingLocation(String startingLocation) {
-        simulationResponse.setStartingLocation(startingLocation);
+    public SimulationResponseBuilder withAllResults(List<SimulationResult> allResults) {
+        simulationResponse.setAllResults(allResults);
         return this;
     }
 

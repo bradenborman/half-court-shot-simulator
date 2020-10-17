@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public enum ShotLocation {
 
-    HALF_COURT(70),
+    HALF_COURT(85),
     THREE_POINTER(275),
     FREE_THROW(666),
     LAYUP(960);

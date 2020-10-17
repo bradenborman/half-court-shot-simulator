@@ -1,0 +1,40 @@
+.basketball-court {
+  width: 35%;
+  border: 1px solid black;
+  margin: 20px;
+  display: inline-block;
+  background-color: snow;
+  padding: 35px;
+
+  .court-img {
+    margin: auto;
+    width: 100%;
+    height: 283px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+  }
+
+  .data-display {
+    margin-top: 10px;
+    width: 100%;
+    height: 400px;
+
+    .starting-location-text {
+      margin: 50px;
+      font-size: 2em;
+    }
+  }
+}
+
+.basketball-court:nth-child(odd) {
+  .court-img {
+    background-image: url("/img/half-court-left.png");
+  }
+}
+
+.basketball-court:nth-child(even) {
+  .court-img {
+    background-image: url("/img/half-court-right.png");
+  }
+}

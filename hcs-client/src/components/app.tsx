@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { SimulationResponse } from "../models/simulationResponse";
 import { StartingLocation } from "../models/enums/StartingLocation";
-import { AttemptBreakdown } from "../models/attemptBreakdown";
+import { SimulationResponse } from "../models/simulationResponse";
+import { SimulationRequest } from "../models/simulationRequest";
+import { BasketballCourt } from "./basketballcourt/basketballCourt";
+import { SimulationResult } from "../models/simulationResult";
 
 require("./app.scss");
 
@@ -11,60 +13,39 @@ export interface IAppProps {}
 
 export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const [
-    halfCourtStartSimulation,
-    SetHalfCourtStartSimulation
-  ] = useState<SimulationResponse | null>(null);
-  const [
-    layupStartSimulation,
-    SetLayupStartSimulation
+    fullSimulationResponse,
+    setFullSimulationResponse
   ] = useState<SimulationResponse | null>(null);
 
   useEffect(() => {
-    fetchHalfCourtAttemptData();
-    fetchLayupAttemptData();
+    fetcAttemptData();
   }, []);
 
-  const fetchHalfCourtAttemptData = async () => {
+  const fetcAttemptData = async () => {
+    const requestBody: SimulationRequest = {
+      startingLocations: [StartingLocation.HALF_COURT, StartingLocation.LAYUP]
+    };
     try {
-      const res: any = await axios.post(`/api/simulate`, {
-        startingLocation: StartingLocation.HALF_COURT
-      });
-      if (res.data) SetHalfCourtStartSimulation(res.data);
+      const res: any = await axios.post(`/api/simulate`, requestBody);
+      if (res.data) {
+        const response: SimulationResponse = res.data;
+        setFullSimulationResponse(response);
+      }
     } catch (err) {
       console.error(err);
     }
   };
 
-  const fetchLayupAttemptData = async () => {
-    try {
-      const res: any = await axios.post(`/api/simulate`, {
-        startingLocation: StartingLocation.LAYUP
-      });
-      if (res.data) SetLayupStartSimulation(res.data);
-    } catch (err) {
-      console.error(err);
+  const getCourts = (): JSX.Element[] | JSX.Element | null => {
+    if (fullSimulationResponse) {
+      return fullSimulationResponse.allResults.map(
+        (simulation: SimulationResult) => {
+          return <BasketballCourt simulationResult={simulation} />;
+        }
+      );
     }
-  };
-
-  const displayData = (): JSX.Element | null => {
-    if (halfCourtStartSimulation) {
-      const items: JSX.Element[] = halfCourtStartSimulation.allAttempts
-        .map((attempt: AttemptBreakdown) => {
-          return attempt.shotsAttemptedCurrentTry;
-        })
-        .map((shot: String[]) => {
-          return <p>{shot.concat(", ")}</p>;
-        });
-
-      return <div className="">{items}</div>;
-    }
-
     return null;
   };
 
-  return (
-    <div>
-      <p>{displayData()}</p>
-    </div>
-  );
+  return <div className="app-wrapper">{getCourts()}</div>;
 };
