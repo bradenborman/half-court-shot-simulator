@@ -17,6 +17,8 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     setFullSimulationResponse
   ] = useState<SimulationResponse | null>(null);
 
+  const [playSpeed, setPlaySpeed] = useState<number>(400);
+
   useEffect(() => {
     fetcAttemptData();
   }, []);
@@ -40,7 +42,12 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     if (fullSimulationResponse) {
       return fullSimulationResponse.allResults.map(
         (simulation: SimulationResult) => {
-          return <BasketballCourt simulationResult={simulation} />;
+          return (
+            <BasketballCourt
+              simulationResult={simulation}
+              playbackSpeend={playSpeed}
+            />
+          );
         }
       );
     }
