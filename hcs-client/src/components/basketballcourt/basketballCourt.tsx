@@ -28,7 +28,6 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
   }, [cycleCompleted]);
 
   const cycleThrough = async () => {
-    await timeout(props.playbackSpeend); //for half sec delay
     const attemptBreakdown: AttemptBreakdown =
       props.simulationResult.allAttempts[currentIndex];
 
@@ -39,6 +38,7 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
     );
 
     const completed = updateShot(shots);
+    await timeout(props.playbackSpeend);
     setCurrentIndex(currentIndex + 1);
     setCycleCompleted(!cycleCompleted);
   };
@@ -47,7 +47,7 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
     return new Promise(res => setTimeout(res, delay));
   }
 
-  const updateShot = async (shots: String[]) => {
+  const updateShot = (shots: String[]) => {
     setAttemptedShotsThisTurn("");
     setAttemptedShotsThisTurn(shots.join("**"));
 

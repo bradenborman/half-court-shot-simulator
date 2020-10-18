@@ -7,6 +7,7 @@ import { SimulationRequest } from "../models/simulationRequest";
 import { BasketballCourt } from "./basketballcourt/basketballCourt";
 import { SimulationResult } from "../models/simulationResult";
 import { AppSettings } from "./settings/appSettings";
+import { number } from "prop-types";
 
 require("./app.scss");
 
@@ -55,9 +56,18 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     return null;
   };
 
+  const updateSpeed = (speedModifier: number) => {
+    speedModifier = speedModifier * 1000;
+    if (
+      (speedModifier < 0 && playSpeed >= 1000) ||
+      (speedModifier > 0 && playSpeed <= 2500)
+    )
+      setPlaySpeed(playSpeed + speedModifier);
+  };
+
   return (
     <div className="app-wrapper">
-      <AppSettings currentSpeed={playSpeed} />
+      <AppSettings currentSpeed={playSpeed} updateSpeed={updateSpeed} />
       {getCourts()}
     </div>
   );
