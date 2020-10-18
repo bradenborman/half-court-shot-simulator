@@ -8,6 +8,7 @@
   display: inline-block;
   background-color: snow;
   padding: 15px;
+  box-shadow: 3px 5px #aca7a7;
 
   .court-img {
     margin: auto;
@@ -37,7 +38,7 @@
   }
 }
 
-.basketball-court:nth-child(odd) {
+.basketball-court:nth-child(even) {
   .court-img {
     &.first-step {
       background-image: url("/img/half-court-left-1.png");
@@ -57,7 +58,7 @@
   }
 }
 
-.basketball-court:nth-child(even) {
+.basketball-court:nth-child(odd) {
   .court-img {
     &.first-step {
       background-image: url("/img/half-court-right-1.png");

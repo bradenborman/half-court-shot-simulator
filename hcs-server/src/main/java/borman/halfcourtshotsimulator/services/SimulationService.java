@@ -1,6 +1,5 @@
 package borman.halfcourtshotsimulator.services;
 
-
 import borman.halfcourtshotsimulator.builders.SimulationResponseBuilder;
 import borman.halfcourtshotsimulator.builders.SimulationResultBuilder;
 import borman.halfcourtshotsimulator.models.AttemptBreakdown;

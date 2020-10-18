@@ -6,6 +6,7 @@ import { SimulationResponse } from "../models/simulationResponse";
 import { SimulationRequest } from "../models/simulationRequest";
 import { BasketballCourt } from "./basketballcourt/basketballCourt";
 import { SimulationResult } from "../models/simulationResult";
+import { AppSettings } from "./settings/appSettings";
 
 require("./app.scss");
 
@@ -17,7 +18,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     setFullSimulationResponse
   ] = useState<SimulationResponse | null>(null);
 
-  const [playSpeed, setPlaySpeed] = useState<number>(400);
+  const [playSpeed, setPlaySpeed] = useState<number>(1500);
 
   useEffect(() => {
     fetcAttemptData();
@@ -54,5 +55,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     return null;
   };
 
-  return <div className="app-wrapper">{getCourts()}</div>;
+  return (
+    <div className="app-wrapper">
+      <AppSettings currentSpeed={playSpeed} />
+      {getCourts()}
+    </div>
+  );
 };
