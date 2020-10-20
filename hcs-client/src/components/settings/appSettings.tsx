@@ -52,7 +52,7 @@ export const AppSettings: React.FC<IAppSettingsProps> = (
             <ul>
               <li>Half Court {"=>"} 8.5%</li>
               <li>Three Pointer {"=>"} 27.5%</li>
-              <li>Free Thorw {"=>"} 66%</li>
+              <li>Free Throw {"=>"} 66%</li>
               <li>Layup {"=>"} 96%</li>
             </ul>
           </p>
