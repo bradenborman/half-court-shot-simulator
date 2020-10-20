@@ -7,7 +7,6 @@ import { SimulationRequest } from "../models/simulationRequest";
 import { BasketballCourt } from "./basketballcourt/basketballCourt";
 import { SimulationResult } from "../models/simulationResult";
 import { AppSettings } from "./settings/appSettings";
-import { number } from "prop-types";
 
 require("./app.scss");
 

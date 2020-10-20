@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { update } from "lodash";
+import React from "react";
+import classNames from "classnames";
 
 require("./appSettings.scss");
 
@@ -16,12 +16,22 @@ export const AppSettings: React.FC<IAppSettingsProps> = (
       <h2 id="settings-title">Settings:</h2>
       <div className="speed-control">
         <p>Current pace: {props.currentSpeed / 1000} seconds</p>
-        <div onClick={() => props.updateSpeed(0.5)} className="speed-btn">
+        <button
+          onClick={() => props.updateSpeed(0.5)}
+          className={classNames("speed-btn", {
+            disabled: props.currentSpeed == 3000
+          })}
+        >
           Slower
-        </div>
-        <div onClick={() => props.updateSpeed(-0.5)} className="speed-btn">
+        </button>
+        <button
+          onClick={() => props.updateSpeed(-0.5)}
+          className={classNames("speed-btn", {
+            disabled: props.currentSpeed == 500
+          })}
+        >
           Faster
-        </div>
+        </button>
       </div>
       <div className="app-info-wrapper">
         <h2 id="app-title">"Half Court Simulator"</h2>

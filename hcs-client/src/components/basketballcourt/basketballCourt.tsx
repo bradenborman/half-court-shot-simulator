@@ -48,21 +48,8 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
   }
 
   const updateShot = (shots: String[]) => {
-    setAttemptedShotsThisTurn("");
     setAttemptedShotsThisTurn(shots.join("**"));
-
-    let shotIndex = 0;
-
-    if (attemptedShotsThisTurn?.includes("HALF COURT")) ++shotIndex;
-
-    if (attemptedShotsThisTurn?.includes("LAYUP")) ++shotIndex;
-
-    if (attemptedShotsThisTurn?.includes("THREE POINTER")) ++shotIndex;
-
-    if (attemptedShotsThisTurn?.includes("FREE THROW")) ++shotIndex;
-
-    setShotIndexForIteration(shotIndex);
-
+    setShotIndexForIteration(shots.length);
     return true;
   };
 
@@ -82,28 +69,27 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
   };
 
   const getCurrentImg = () => {
-    if (props.simulationResult.allAttempts.length == currentIndex)
-      return classNames("court-img", "completed");
+    if (props.simulationResult.allAttempts.length <= currentIndex)
+      return <div className={classNames("court-img", "completed")}></div>;
 
     if (shotIndexForIteration == 1)
-      return classNames("court-img", "first-step");
+      return <div className={classNames("court-img", "first-step")}></div>;
 
     if (shotIndexForIteration == 2)
-      return classNames("court-img", "second-step");
+      return <div className={classNames("court-img", "second-step")}></div>;
 
     if (shotIndexForIteration == 3)
-      return classNames("court-img", "third-step");
+      return <div className={classNames("court-img", "third-step")}></div>;
 
     if (shotIndexForIteration == 4)
-      return classNames("court-img", "fourth-step");
+      return <div className={classNames("court-img", "fourth-step")}></div>;
 
-    return classNames("court-img", "first-step");
+    return <div className={classNames("court-img", "first-step")}></div>;
   };
 
   return (
     <div className="basketball-court">
-      <div className={getCurrentImg()}></div>
-
+      {getCurrentImg()}
       <div className="data-display">
         <p className="starting-location-text">
           Starting from:{" "}
