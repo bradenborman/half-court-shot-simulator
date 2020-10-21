@@ -19,8 +19,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
-	//Testing
+	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.4.RELEASE'
 
+
+	//Testing
 	//Spock
 	implementation 'org.codehaus.groovy:groovy-all:2.4.11'
 	testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
