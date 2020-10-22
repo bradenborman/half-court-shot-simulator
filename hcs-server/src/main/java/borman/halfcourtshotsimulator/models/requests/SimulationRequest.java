@@ -11,4 +11,5 @@ public class SimulationRequest {
     public void setStartingLocations(String[] startingLocations) {
         this.startingLocations = startingLocations;
     }
+
 }

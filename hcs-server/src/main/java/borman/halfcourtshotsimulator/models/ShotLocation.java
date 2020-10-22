@@ -12,18 +12,16 @@ public enum ShotLocation {
     FREE_THROW(666),
     LAYUP(960);
 
-    private int oddsOfSuccess;
-    private int upperLimit = 1000;
-
+    private final int oddsOfSuccess;
 
     ShotLocation(int oddsOfSuccess) {
         this.oddsOfSuccess = oddsOfSuccess;
     }
 
-    private static List<ShotLocation> shotOrder = Arrays.asList(HALF_COURT, THREE_POINTER, FREE_THROW, LAYUP);
+    private static final List<ShotLocation> shotOrder = Arrays.asList(HALF_COURT, THREE_POINTER, FREE_THROW, LAYUP);
 
     public boolean attemptShot() {
-        return (new Random().nextInt(this.upperLimit - 1) + 1) <= oddsOfSuccess;
+        return (new Random().nextInt(1000 - 1) + 1) <= oddsOfSuccess;
     }
 
     public static List<ShotLocation> getShotSequence(String startingSpotStr) {

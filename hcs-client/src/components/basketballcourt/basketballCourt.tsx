@@ -89,6 +89,9 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
 
   return (
     <div className="basketball-court">
+      <div className="avg-display">
+        AVG: {props.simulationResult.averageAttemptsUntilSuccess}
+      </div>
       {getCurrentImg()}
       <div className="data-display">
         <p className="starting-location-text">

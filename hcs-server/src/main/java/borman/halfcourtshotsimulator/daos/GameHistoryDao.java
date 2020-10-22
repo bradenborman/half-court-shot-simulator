@@ -1,11 +1,10 @@
 package borman.halfcourtshotsimulator.daos;
 
-import borman.halfcourtshotsimulator.models.ShotLocation;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import static borman.halfcourtshotsimulator.daos.Queries.*;
+import static borman.halfcourtshotsimulator.daos.Queries.SELECT_SHOT_AVERAGE_BY_LOCATION;
 
 @Component
 public class GameHistoryDao {
@@ -16,11 +15,10 @@ public class GameHistoryDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    public String getAverageShotsToSuccessByLocation(ShotLocation location) {
+    public String getAverageShotsToSuccessByLocation(String location) {
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("startingPosition", location.name());
+        params.addValue("startingPosition", location);
         return namedParameterJdbcTemplate.queryForObject(SELECT_SHOT_AVERAGE_BY_LOCATION, params, String.class);
     }
-
 
 }

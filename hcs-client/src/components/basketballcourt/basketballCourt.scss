@@ -1,14 +1,39 @@
+@keyframes polygons {
+  1% {
+    clip-path: circle(0%);
+  }
+  100% {
+    clip-path: circle(33%);
+    left: -50px;
+    top: -50px;
+  }
+}
+
 .basketball-court {
+  position: relative;
   width: 450px;
   height: 650px;
   border-radius: 10px;
   vertical-align: top;
-  border: 1px solid black;
   margin: 50px 50px 0px 50px;
   display: inline-block;
   background-color: snow;
   padding: 15px;
   box-shadow: 3px 5px #aca7a7;
+
+  .avg-display {
+    left: -100px;
+    top: -100px;
+    position: absolute;
+    background-color: snow;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    clip-path: circle(0%);
+    animation: polygons 1s alternate forwards;
+    animation-delay: 1s;
+    line-height: 6.5;
+  }
 
   .court-img {
     margin: auto;
