@@ -7,4 +7,9 @@ public class Queries {
                     "FROM game_history " +
                     "WHERE starting_position = :startingPosition";
 
+
+    final static String INSERT_SIMULATION =
+            "INSERT INTO game_history (starting_position, shots_to_finish) " +
+                    "VALUES (:startingPosition, :attempts)";
+
 }

@@ -7,8 +7,4 @@ CREATE TABLE game_history (
 );
 
 INSERT INTO game_history (starting_position, shots_to_finish)
-VALUES
-  ('HALF_COURT', 50),
-  ('LAYUP', 500),
-  ('HALF_COURT', 48),
-  ('LAYUP', 200);
+VALUES ('HALF_COURT', 50), ('LAYUP', 50);

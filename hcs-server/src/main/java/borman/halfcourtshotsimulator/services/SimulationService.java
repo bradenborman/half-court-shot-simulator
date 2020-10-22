@@ -2,6 +2,7 @@ package borman.halfcourtshotsimulator.services;
 
 import borman.halfcourtshotsimulator.builders.SimulationResponseBuilder;
 import borman.halfcourtshotsimulator.builders.SimulationResultBuilder;
+import borman.halfcourtshotsimulator.daos.SimulationDao;
 import borman.halfcourtshotsimulator.models.AttemptBreakdown;
 import borman.halfcourtshotsimulator.models.ShotLocation;
 import borman.halfcourtshotsimulator.models.SimulationResult;
@@ -20,6 +21,11 @@ import java.util.stream.Stream;
 public class SimulationService {
 
     private Logger logger = LoggerFactory.getLogger(SimulationService.class);
+    private SimulationDao simulationDao;
+
+    public SimulationService(SimulationDao simulationDao) {
+        this.simulationDao = simulationDao;
+    }
 
     public SimulationResponse startSequenceFromAll(String... startingPoint) {
         List<SimulationResult> allResults = Stream.of(startingPoint)
@@ -34,7 +40,7 @@ public class SimulationService {
 
     private SimulationResult startSequenceFrom(String startingPoint) {
         logger.info("Starting shot process from: {}", startingPoint);
-        return SimulationResultBuilder.aSimulationResult()
+        SimulationResult result = SimulationResultBuilder.aSimulationResult()
                 .withAllAttempts(
                         simulate(
                                 ShotLocation.getShotSequence(startingPoint)
@@ -42,6 +48,10 @@ public class SimulationService {
                 )
                 .withStartingLocation(startingPoint)
                 .build();
+
+        simulationDao.insertSimulation(result.getAllAttempts().size(), result.getStartingLocation());
+
+        return result;
     }
 
     List<AttemptBreakdown> simulate(List<ShotLocation> shotsToTake) {
@@ -72,6 +82,14 @@ public class SimulationService {
 
         logger.info("Process completed from start to finish after {} attempts", attempts.size());
         return attempts;
+    }
+
+    public void initData() {
+        logger.info("Inserting simulations..");
+        for (int i = 0; i < 10; i++) {
+            this.startSequenceFrom(ShotLocation.HALF_COURT.name());
+            this.startSequenceFrom(ShotLocation.LAYUP.name());
+        }
     }
 
 }
