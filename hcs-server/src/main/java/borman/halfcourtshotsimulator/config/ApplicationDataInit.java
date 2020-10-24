@@ -14,6 +14,11 @@ public class ApplicationDataInit implements ApplicationListener<ApplicationReady
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
         simulationService.initData();
     }
 

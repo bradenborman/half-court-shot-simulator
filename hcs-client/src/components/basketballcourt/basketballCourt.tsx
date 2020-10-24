@@ -31,7 +31,7 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
     const attemptBreakdown: AttemptBreakdown =
       props.simulationResult.allAttempts[currentIndex];
 
-    const shots: String[] = attemptBreakdown.shotsAttemptedCurrentTry.map(
+    const shots: String[] = attemptBreakdown?.shotsAttemptedCurrentTry.map(
       shot => {
         return shot.replace("_", " ");
       }
@@ -55,9 +55,11 @@ export const BasketballCourt: React.FC<IBasketballCourtProps> = (
 
   const getAttemptedShot = (): JSX.Element[] | JSX.Element | null => {
     if (attemptedShotsThisTurn)
-      return attemptedShotsThisTurn.split("**").map(shot => {
-        return <p>{shot}</p>;
-      });
+      return attemptedShotsThisTurn
+        .split("**")
+        .map((shot: any, index: number) => {
+          return <p key={index}>{shot}</p>;
+        });
 
     return null;
   };

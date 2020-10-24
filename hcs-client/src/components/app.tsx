@@ -8,7 +8,9 @@ import { BasketballCourt } from "./basketballcourt/basketballCourt";
 import { SimulationResult } from "../models/simulationResult";
 import { AppSettings } from "./settings/appSettings";
 import { ContextMenu } from "./context-menu/appContextMenu";
-import { update } from "lodash";
+import { MenuItem } from "./context-menu/menuItem";
+import { MenuSeparator } from "./context-menu/menuSeparator";
+import { MenuActionOne, MenuActionThree } from "./context-menu/menuActions";
 
 require("./app.scss");
 
@@ -44,9 +46,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const getCourts = (): JSX.Element[] | JSX.Element | null => {
     if (fullSimulationResponse) {
       return fullSimulationResponse.allResults.map(
-        (simulation: SimulationResult) => {
+        (simulation: SimulationResult, index: number) => {
           return (
             <BasketballCourt
+              key={index}
               simulationResult={simulation}
               playbackSpeend={playSpeed}
             />
@@ -66,11 +69,26 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
       setPlaySpeed(playSpeed + speedModifier);
   };
 
+  const getContextMenu = (): JSX.Element => {
+    return (
+      <ContextMenu>
+        <MenuItem action={MenuActionOne} iconClass="fa-folder-open">
+          Test Link 1
+        </MenuItem>
+        <MenuItem disabled={true} iconClass="fa-handshake-o">
+          Test Link 2
+        </MenuItem>
+        <MenuSeparator />
+        <MenuItem action={MenuActionThree}>Test Link 3</MenuItem>
+      </ContextMenu>
+    );
+  };
+
   return (
     <div className="app-wrapper">
       <AppSettings currentSpeed={playSpeed} updateSpeed={updateSpeed} />
       {getCourts()}
-      <ContextMenu updateSpeed={updateSpeed} />
+      {getContextMenu()}
     </div>
   );
 };
