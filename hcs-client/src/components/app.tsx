@@ -7,10 +7,10 @@ import { SimulationRequest } from "../models/simulationRequest";
 import { BasketballCourt } from "./basketballcourt/basketballCourt";
 import { SimulationResult } from "../models/simulationResult";
 import { AppSettings } from "./settings/appSettings";
-import { ContextMenu } from "./context-menu/appContextMenu";
+import { ContextMenu } from "./context-menu/ContextMenu";
 import { MenuItem } from "./context-menu/menuItem";
 import { MenuSeparator } from "./context-menu/menuSeparator";
-import { MenuActionOne, MenuActionThree } from "./context-menu/menuActions";
+import { openGoogle, reloadPage } from "./context-menu/menuActions";
 
 require("./app.scss");
 
@@ -72,14 +72,15 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const getContextMenu = (): JSX.Element => {
     return (
       <ContextMenu>
-        <MenuItem action={MenuActionOne} iconClass="fa-folder-open">
-          Test Link 1
+        <MenuItem action={openGoogle} iconClass="fa-google">
+          Open Google Search
         </MenuItem>
-        <MenuItem disabled={true} iconClass="fa-handshake-o">
-          Test Link 2
-        </MenuItem>
+        <MenuItem disabled={true}>Demo link 2 - disabled</MenuItem>
+        <MenuItem disabled={true}>Demo link 3 - disabled</MenuItem>
         <MenuSeparator />
-        <MenuItem action={MenuActionThree}>Test Link 3</MenuItem>
+        <MenuItem action={reloadPage} iconClass="fa-refresh">
+          Refresh Page
+        </MenuItem>
       </ContextMenu>
     );
   };

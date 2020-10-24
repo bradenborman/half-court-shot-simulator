@@ -1,11 +1,11 @@
-export const MenuActionOne = (): void => {
-  alert("Action One");
+export const openGoogle = (): void => {
+  window.open("https://www.google.com");
 };
 
-export const MenuActionTwo = (): void => {
-  alert("Action Two");
+export const reloadPage = (): void => {
+  location.reload();
 };
 
 export const MenuActionThree = (): void => {
-  alert("Action Three");
+  //Do somthing else here for menu
 };

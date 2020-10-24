@@ -16,7 +16,7 @@ export const MenuItem: React.FC<IMenuItemProps> = (props: IMenuItemProps) => {
           "menu-item-disabled": props.disabled
         })}
       >
-        <a href="#" className="menu-btn">
+        <a className="menu-btn">
           <i className={classNames("fa", props.iconClass)}></i>
           <span className="menu-text">{props.children}</span>
         </a>
