@@ -7,6 +7,8 @@ import { SimulationRequest } from "../models/simulationRequest";
 import { BasketballCourt } from "./basketballcourt/basketballCourt";
 import { SimulationResult } from "../models/simulationResult";
 import { AppSettings } from "./settings/appSettings";
+import { ContextMenu } from "./context-menu/appContextMenu";
+import { update } from "lodash";
 
 require("./app.scss");
 
@@ -68,6 +70,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     <div className="app-wrapper">
       <AppSettings currentSpeed={playSpeed} updateSpeed={updateSpeed} />
       {getCourts()}
+      <ContextMenu updateSpeed={updateSpeed} />
     </div>
   );
 };
