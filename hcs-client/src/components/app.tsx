@@ -72,6 +72,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const getContextMenu = (): JSX.Element => {
     return (
       <ContextMenu>
+        {/* <ContextMenu allowedClasses={["basketball-court"]}> */}
         <MenuItem action={openGoogle} iconClass="fa-google">
           Open Google Search
         </MenuItem>

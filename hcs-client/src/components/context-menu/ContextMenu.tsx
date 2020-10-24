@@ -5,6 +5,7 @@ require("./ContextMenu.scss");
 
 export interface IMenuProps {
   children: any;
+  allowedClasses?: string[];
 }
 
 export const ContextMenu: React.FC<IMenuProps> = (props: IMenuProps) => {
@@ -20,14 +21,39 @@ export const ContextMenu: React.FC<IMenuProps> = (props: IMenuProps) => {
   document.addEventListener(
     "contextmenu",
     (e: any) => {
-      e.preventDefault();
-      setxAxis(e.pageX);
-      setyAxis(e.pageY);
-      setShowMenu(true);
-      document.addEventListener("click", onMouseDown, false);
+      if (clickInsideElement(e) || props.allowedClasses == null) {
+        e.preventDefault();
+        setxAxis(e.pageX);
+        setyAxis(e.pageY);
+        setShowMenu(true);
+        document.addEventListener("click", onMouseDown, false);
+      }
     },
     false
   );
+
+  const clickInsideElement = (e: any): boolean => {
+    let isValid: boolean = false;
+    props.allowedClasses?.forEach(element => {
+      if (clickInsideElementY(e, element)) {
+        isValid = true;
+      }
+    });
+    return isValid;
+  };
+  const clickInsideElementY = (e: any, className: String): boolean => {
+    var el = e.srcElement || e.target;
+    if (el.classList.contains(className)) {
+      return el;
+    } else {
+      while ((el = el.parentNode)) {
+        if (el.classList && el.classList.contains(className)) {
+          return el;
+        }
+      }
+    }
+    return false;
+  };
 
   return (
     <div>
