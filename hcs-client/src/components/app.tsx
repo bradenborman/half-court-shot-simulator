@@ -11,6 +11,7 @@ import { ContextMenu } from "./context-menu/ContextMenu";
 import { MenuItem } from "./context-menu/menuItem";
 import { MenuSeparator } from "./context-menu/menuSeparator";
 import { openGoogle, reloadPage } from "./context-menu/menuActions";
+import { MenuGroup } from "./context-menu/menuGroup";
 
 require("./app.scss");
 
@@ -69,16 +70,23 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
       setPlaySpeed(playSpeed + speedModifier);
   };
 
+  // allowedClasses={["basketball-court"]}
+
   const getContextMenu = (): JSX.Element => {
     return (
       <ContextMenu>
-        {/* <ContextMenu allowedClasses={["basketball-court"]}> */}
         <MenuItem action={openGoogle} iconClass="fa-google">
           Open Google Search
         </MenuItem>
         <MenuItem disabled={true}>Demo link 2 - disabled</MenuItem>
         <MenuItem disabled={true}>Demo link 3 - disabled</MenuItem>
         <MenuSeparator />
+        <MenuGroup groupLableTxt="Social">
+          <MenuItem iconClass="fa-twitter">Twitter</MenuItem>
+          <MenuItem iconClass="fa-facebook-official">Facebook</MenuItem>
+          <MenuItem iconClass="fa-google-plus">Google Plus</MenuItem>
+          <MenuItem iconClass="fa-envelope">Email</MenuItem>
+        </MenuGroup>
         <MenuItem action={reloadPage} iconClass="fa-refresh">
           Refresh Page
         </MenuItem>

@@ -10,17 +10,16 @@ export interface IMenuItemProps {
 
 export const MenuItem: React.FC<IMenuItemProps> = (props: IMenuItemProps) => {
   return (
-    <div onClick={props.action}>
-      <li
-        className={classNames("menu-item", {
-          "menu-item-disabled": props.disabled
-        })}
-      >
-        <a className="menu-btn">
-          <i className={classNames("fa", props.iconClass)}></i>
-          <span className="menu-text">{props.children}</span>
-        </a>
-      </li>
-    </div>
+    <li
+      onClick={props.action}
+      className={classNames("menu-item", {
+        "menu-item-disabled": props.disabled
+      })}
+    >
+      <a className="menu-btn">
+        <i className={classNames("fa", props.iconClass)}></i>
+        <span className="menu-text">{props.children}</span>
+      </a>
+    </li>
   );
 };

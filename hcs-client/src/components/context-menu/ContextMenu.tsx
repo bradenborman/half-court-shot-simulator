@@ -56,13 +56,11 @@ export const ContextMenu: React.FC<IMenuProps> = (props: IMenuProps) => {
   };
 
   return (
-    <div>
-      <ul
-        className={classNames("menu", { "menu-show": showMenu })}
-        style={{ left: xAxis - 10 + "px", top: yAxis - 10 + "px" }}
-      >
-        {props.children}
-      </ul>
-    </div>
+    <ul
+      className={classNames("menu", { "menu-show": showMenu })}
+      style={{ left: xAxis - 10 + "px", top: yAxis - 10 + "px" }}
+    >
+      {props.children}
+    </ul>
   );
 };
