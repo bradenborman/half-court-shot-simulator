@@ -10,7 +10,11 @@ import { AppSettings } from "./settings/appSettings";
 import { ContextMenu } from "./context-menu/ContextMenu";
 import { MenuItem } from "./context-menu/menuItem";
 import { MenuSeparator } from "./context-menu/menuSeparator";
-import { openGoogle, reloadPage } from "./context-menu/menuActions";
+import {
+  openGoogle,
+  reloadPage,
+  chatWithPat
+} from "./context-menu/menuActions";
 import { MenuGroup } from "./context-menu/menuGroup";
 
 require("./app.scss");
@@ -78,7 +82,9 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         <MenuItem action={openGoogle} iconClass="fa-google">
           Open Google Search
         </MenuItem>
-        <MenuItem disabled={true}>Demo link 2 - disabled</MenuItem>
+        <MenuItem action={chatWithPat} iconClass="fa-bell-o">
+          Alert Pat of Message
+        </MenuItem>
         <MenuItem disabled={true}>Demo link 3 - disabled</MenuItem>
         <MenuSeparator />
         <MenuGroup groupLableTxt="Social">
@@ -87,6 +93,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
           <MenuItem iconClass="fa-google-plus">Google Plus</MenuItem>
           <MenuItem iconClass="fa-envelope">Email</MenuItem>
         </MenuGroup>
+        <MenuSeparator />
         <MenuItem action={reloadPage} iconClass="fa-refresh">
           Refresh Page
         </MenuItem>

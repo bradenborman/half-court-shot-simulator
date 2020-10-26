@@ -6,6 +6,7 @@ export const reloadPage = (): void => {
   location.reload();
 };
 
-export const MenuActionThree = (): void => {
-  //Do somthing else here for menu
+export const chatWithPat = (): void => {
+  //<a href={`sip:<${user.email}>`}>@{user.fullName}</a>
+  window.open("sip:PSteuber@ShelterInsurance.com");
 };
